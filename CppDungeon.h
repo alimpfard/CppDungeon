@@ -104,7 +104,9 @@ struct State {
 
     static consteval void assert_win()
     {
-        static_assert(DependentBool<State::won, State::describe<>>, "Win the game to compile :)");
+        constexpr auto won = State::won;
+        constexpr auto describe = State::describe<>;
+        static_assert(DependentBool<won, describe>, "Win the game to compile :)");
     }
 };
 
